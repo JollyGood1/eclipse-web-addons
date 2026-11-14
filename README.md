@@ -13,7 +13,7 @@ The first part of this file is about the colour themes; File Icons has its own s
 
 Adds **Window > Preferences > General > Appearance > Syntax Colour Theme**: pick a colour theme, press Apply, and the syntax colours of the installed editors are set for the current workspace.
 
-It ships with 27 themes: **Tomorrow Night**, and the 26 themes of the Eclipse Color Theme plug-in (Black Pastel, frontenddev, Gedit Original Oblivion, Havenjark, Inkpot, minimal, Monokai, Mr, NightLion Aptana Theme, Notepad++ Like, Oblivion, Obsidian, Pastel, RecognEyes, Retta, Roboticket, Schuss, Solarized Dark, Solarized Light, Sublime Text 2, Sublime Text Monokai Extended, Sunburst, Tango, Vibrant Ink, Wombat, Zenburn). Eclipse itself has no theme files of this kind; its own colours are what **Restore Defaults** returns to.
+It ships with 27 themes: the 26 themes of the Eclipse Color Theme plug-in (Black Pastel, frontenddev, Gedit Original Oblivion, Havenjark, Inkpot, minimal, Monokai, Mr, NightLion Aptana Theme, Notepad++ Like, Oblivion, Obsidian, Pastel, RecognEyes, Retta, Roboticket, Schuss, Solarized Dark, Solarized Light, Sublime Text 2, Sublime Text Monokai Extended, Sunburst, Tango, Vibrant Ink, Wombat, Zenburn) and Tomorrow Night because it's my favourite. Eclipse itself has no theme files of this kind; its own colours are what **Restore Defaults** returns to.
 
 Built and tested on 2026-11-10 with Eclipse IDE 4.41 (2026-09) for PHP Developers, Windows 10. Bundle id: `io.github.jollygood1.syntaxthemes`.
 
