@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="io.github.jollygood1.fileicons.feature"
+      label="File Icons for Web"
+      version="1.0.0.qualifier"
+      provider-name="JollyGood1"
+      plugin="io.github.jollygood1.fileicons">
+
+   <description url="https://github.com/JollyGood1/eclipse-web-addons">
+      Choose the icon of each file type (PHP, Vue, JSON, Markdown ...) in the Project Explorer and on
+editor tabs on Preferences &gt; General &gt; Appearance &gt; File Icons.
+   </description>
+
+   <copyright>
+      Copyright (c) JollyGood1. The bundled icons come from Devicon and Material Design Icons
+(see icons/web/licenses in the plug-in).
+   </copyright>
+
+   <license url="https://www.eclipse.org/legal/epl-v10.html">
+      Eclipse Public License 1.0. The full text is at https://www.eclipse.org/legal/epl-v10.html
+The bundled icons keep their own licences: MIT (Devicon) and Apache License 2.0 (Material Design Icons).
+   </license>
+
+   <plugin
+         id="io.github.jollygood1.fileicons"
+         version="0.0.0"/>
+
+</feature>

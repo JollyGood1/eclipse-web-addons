@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lets Tycho build the plug-ins, features and the site without a pom.xml in each folder. -->
+<extensions>
+	<extension>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>tycho-build</artifactId>
+		<version>5.0.4</version>
+	</extension>
+</extensions>

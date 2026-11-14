@@ -2,5 +2,9 @@
 build/
 dist/
 bin/
+target/
+# written by the Tycho build while it runs
+.polyglot.*
+.tycho-consumer-pom.xml
 # Eclipse workspace files inside the plug-in projects
 .settings/

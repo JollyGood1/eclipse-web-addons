@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="io.github.jollygood1.syntaxthemes.feature"
+      label="Syntax Colour Themes for Web"
+      version="1.0.0.qualifier"
+      provider-name="JollyGood1"
+      plugin="io.github.jollygood1.syntaxthemes">
+
+   <description url="https://github.com/JollyGood1/eclipse-web-addons">
+      Choose a syntax colour theme for the Java, JavaScript, PHP, HTML, CSS, XML and JSON editors
+and the Generic Code Editor on Preferences &gt; General &gt; Appearance &gt; Syntax Colour Theme.
+   </description>
+
+   <copyright>
+      Copyright (c) JollyGood1 and the authors of the bundled themes (see NOTICE.md in the repository).
+   </copyright>
+
+   <license url="https://www.eclipse.org/legal/epl-v10.html">
+      Eclipse Public License 1.0. The full text is at https://www.eclipse.org/legal/epl-v10.html
+   </license>
+
+   <plugin
+         id="io.github.jollygood1.syntaxthemes"
+         version="0.0.0"/>
+
+</feature>

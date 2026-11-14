@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="io.github.jollygood1.syntaxthemes.feature">
+      <category name="io.github.jollygood1.webaddons"/>
+   </feature>
+   <feature id="io.github.jollygood1.fileicons.feature">
+      <category name="io.github.jollygood1.webaddons"/>
+   </feature>
+   <category-def name="io.github.jollygood1.webaddons" label="Eclipse Web Addons">
+      <description>
+         Syntax colour themes and file icons for web development in Eclipse.
+      </description>
+   </category-def>
+</site>

@@ -183,7 +183,7 @@ public class Open implements IStartup {
 		log("after Apply TN: " + state());
 		shot(s, "page-applied");
 
-		String semanticBox = "Switch on semantic highlighting (classes, methods, fields, variables) in Java, JavaScript and PHP";
+		String semanticBox = "Switch on semantic highlighting in Java, JavaScript and PHP";
 		log("semantic before: " + semantic());
 		click(s, semanticBox);
 		click(s, "Apply");
@@ -265,6 +265,20 @@ public class Open implements IStartup {
 				pump(1000);
 			}
 		}
+		// which editor a JavaScript file gets (JSDT of WTP 3.30 and later registers none of its own)
+		IFile jsFile = project.getFile("sample.js");
+		jsFile.create(new ByteArrayInputStream("function count(items) {\n    return items.length;\n}\n".getBytes(StandardCharsets.UTF_8)), true, null);
+		log("js opened in " + IDE.openEditor(page, jsFile).getClass().getName());
+		pump(3000);
+		page.closeAllEditors(false);
+		// the page in a narrow dialog with the theme that has the longest website address
+		PreferenceDialog d = open();
+		Shell s = d.getShell();
+		s.setSize(700, 600);
+		select(s, "Zenburn");
+		pump(1000);
+		shot(s, "page-long-author");
+		d.close();
 		log("done");
 	}
 

@@ -45,7 +45,8 @@ if (Test-Path $build) { Remove-Item $build -Recurse -Force }
 New-Item -ItemType Directory -Force $dist | Out-Null
 $stamp = Get-Date -Format 'yyyyMMddHHmm'
 
-$projects = Get-ChildItem $PSScriptRoot -Directory -Filter 'io.github.jollygood1.*' | Where-Object { -not $Only -or $_.Name -eq $Only }
+$projects = Get-ChildItem $PSScriptRoot -Directory -Filter 'io.github.jollygood1.*' |
+    Where-Object { (Test-Path (Join-Path $_.FullName 'META-INF\MANIFEST.MF')) -and (-not $Only -or $_.Name -eq $Only) }
 foreach ($p in $projects) {
     $id = $p.Name
     $proj = $p.FullName
@@ -69,9 +70,9 @@ foreach ($p in $projects) {
     $version = ([regex]'Bundle-Version: (\S+)').Match($manifest).Groups[1].Value
 
     # everything else in the project folder goes into the jar (plugin.xml, OSGI-INF, schema, themes, icons ...)
-    $skip = 'src', 'bin', 'META-INF', 'build.properties', '.project', '.classpath', '.settings'
+    $skip = 'src', 'bin', 'META-INF', 'build.properties', '.project', '.classpath', '.settings', 'target', 'pom.xml'
     $jarArgs = @('--create', '--file', "$dist\${id}_$version.jar", '--manifest', "$build\$id\MANIFEST.MF", '-C', $classes, '.')
-    Get-ChildItem $proj -Force | Where-Object { $skip -notcontains $_.Name } | ForEach-Object { $jarArgs += @('-C', $proj, $_.Name) }
+    Get-ChildItem $proj -Force | Where-Object { $skip -notcontains $_.Name -and $_.Name -notlike '.polyglot*' -and $_.Name -notlike '.tycho*' } | ForEach-Object { $jarArgs += @('-C', $proj, $_.Name) }
 
     Get-ChildItem $dist -Filter "${id}_*.jar" | Remove-Item -Force
     & $jarExe @jarArgs

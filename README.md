@@ -33,7 +33,26 @@ Built and tested on 2026-11-10 with Eclipse IDE 4.41 (2026-09) for PHP Developer
 
 ## Build
 
-Needs a JDK 21 and an Eclipse install to compile against. No Maven.
+There are two ways to build. Both need a JDK 21.
+
+### With Maven and Tycho (plug-ins, features and an update site)
+
+Needs Maven 3.9.9 or newer and, on the first run, an internet connection: Tycho and the list of Eclipse plug-ins to compile against are downloaded from Maven Central and `download.eclipse.org` into the local Maven repository. No Eclipse install is needed.
+
+```powershell
+mvn clean verify
+```
+
+The result is an update site (p2 repository) in `io.github.jollygood1.webaddons.site\target\repository`, and the same site as a zip next to it in `target`. It holds the two plug-ins and one feature for each, in the category *Eclipse Web Addons*.
+
+- The Eclipse release to compile against is the property `eclipse.release` in `pom.xml`; the Tycho version is set there and in `.mvn\extensions.xml` (keep the two the same).
+- Only the root has a `pom.xml`. Tycho reads the plug-ins from their `MANIFEST.MF`, the features from `feature.xml` and the site from `category.xml`.
+- Later builds can run offline: `mvn -o clean verify`.
+- `.github\workflows\update-site.yml` runs the same build on GitHub on every push to `main` and publishes the site on GitHub Pages, together with `io.github.jollygood1.webaddons.site\index.html` (the page a browser shows at that address). One-time setup in the repository: Settings > Pages > Source: *GitHub Actions*.
+
+### With the script (plug-in jars only, no Maven)
+
+Needs an Eclipse install to compile against.
 
 ```powershell
 .\build.ps1 -EclipseDir '<folder with eclipse.exe>'
@@ -41,9 +60,17 @@ Needs a JDK 21 and an Eclipse install to compile against. No Maven.
 
 The script has no built-in paths. `-EclipseDir` can be left out when the environment variable `ECLIPSE_HOME` is set. The JDK is taken from `-Jdk '<JDK folder>'`, else `JAVA_HOME`, else `javac` on the PATH. One plug-in only: `-Only io.github.jollygood1.fileicons`. The jars land in `dist\`.
 
-Each `io.github.jollygood1.*` folder is a normal PDE plug-in project: File > Import > Existing Projects into Workspace also works, and it can be exported with Export > Deployable plug-ins. Tycho/Maven files (for an update site) are not included yet.
+Each `io.github.jollygood1.*` folder is a normal PDE plug-in project: File > Import > Existing Projects into Workspace also works, and it can be exported with Export > Deployable plug-ins.
 
 ## Install
+
+### From the update site
+
+Help > Install New Software..., Add..., and enter the location `https://jollygood1.github.io/eclipse-web-addons/`. For a site you built yourself, use *Local...* with the folder `io.github.jollygood1.webaddons.site\target\repository`, or *Archive...* with the site zip. Untick *Contact all update sites during install* to make it quicker, select one or both entries under *Eclipse Web Addons*, and restart when asked. The jars are not signed, so Eclipse asks whether to trust unsigned content.
+
+Do not install the same plug-in both this way and through `dropins`.
+
+### By copying the jars
 
 1. Close Eclipse (it locks plugin jars while running).
 2. Copy `dist\io.github.jollygood1.syntaxthemes_*.jar` into `<Eclipse>\dropins\syntaxthemes\plugins\` (create the folders; remove an older version of the jar). For File Icons: `dist\io.github.jollygood1.fileicons_*.jar` into `<Eclipse>\dropins\fileicons\plugins\`.
@@ -105,6 +132,7 @@ Window colours as a choice. They have to stay a stylesheet layered on Eclipse's 
 ## Known limits (colour themes)
 
 - The preference keys of the editors are their internal names; a future release of an editor can rename them. There is no public API for this.
+- JavaScript (JSDT): the colours are written to its preferences, but the JSDT plug-in in Eclipse 2026-09 registers no editor of its own. JavaScript files open in the Generic Code Editor and get their colours from the TextMate theme, so the JSDT values have no visible effect there.
 - All 27 themes were applied once in a test run without errors. Colours were compared value by value for Tomorrow Night only, and looked at in an editor for Tomorrow Night and Monokai. The mappings match the original Eclipse Color Theme plug-in key by key (compared on 2026-11-14).
 
 # File Icons for Web
