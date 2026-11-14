@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema targetNamespace="io.github.jollygood1.fileicons" xmlns="http://www.w3.org/2001/XMLSchema">
+   <annotation>
+      <appinfo>
+         <meta.schema plugin="io.github.jollygood1.fileicons" id="iconSets" name="File icon sets"/>
+      </appinfo>
+      <documentation>
+         Contributes a set of file icons: a folder with 16x16 PNG images (optionally name@2x.png at 32x32)
+         and a file mapping.properties in it (file name or extension, lower case = image file).
+      </documentation>
+   </annotation>
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="iconSet" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required"/>
+         <attribute name="id" type="string"/>
+         <attribute name="name" type="string"/>
+      </complexType>
+   </element>
+   <element name="iconSet">
+      <complexType>
+         <attribute name="id" type="string" use="required"/>
+         <attribute name="name" type="string" use="required">
+            <annotation><appinfo><meta.attribute translatable="true"/></appinfo></annotation>
+         </attribute>
+         <attribute name="folder" type="string" use="required">
+            <annotation>
+               <documentation>Folder in the contributing bundle that holds the images and mapping.properties.</documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+</schema>

@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: File Icons UI test (not part of the addon)
+Bundle-SymbolicName: fileicons.uitest;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.core.resources,org.eclipse.ui.ide,org.eclipse.ui.navigator,io.github.jollygood1.fileicons;resolution:=optional

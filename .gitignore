@@ -1,0 +1,6 @@
+# build output
+build/
+dist/
+bin/
+# Eclipse workspace files inside the plug-in projects
+.settings/

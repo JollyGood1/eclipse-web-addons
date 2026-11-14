@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="io.github.jollygood1.fileicons.tabIconListener">
+   <implementation class="io.github.jollygood1.fileicons.TabIconListener"/>
+   <service>
+      <provide interface="org.osgi.service.event.EventHandler"/>
+   </service>
+   <property name="event.topics" type="String" value="org/eclipse/e4/ui/model/application/ApplicationElement/transientData/*"/>
+</scr:component>

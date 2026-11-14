@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="iconSets" name="%extpoint.iconSets" schema="schema/iconSets.exsd"/>
+
+   <!-- General > Appearance > File Icons -->
+   <extension point="org.eclipse.ui.preferencePages">
+      <page id="io.github.jollygood1.fileicons.page"
+            name="%page.name"
+            category="org.eclipse.ui.preferencePages.Views"
+            class="io.github.jollygood1.fileicons.FileIconsPreferencePage">
+         <keywordReference id="io.github.jollygood1.fileicons.keywords"/>
+      </page>
+   </extension>
+   <extension point="org.eclipse.ui.keywords">
+      <keyword id="io.github.jollygood1.fileicons.keywords" label="%page.keywords"/>
+   </extension>
+
+   <!-- Files in views (Project Explorer ...): a full, not lightweight, decorator may return a whole new image. -->
+   <extension point="org.eclipse.ui.decorators">
+      <decorator id="io.github.jollygood1.fileicons.decorator"
+                 label="%decorator.name"
+                 state="true"
+                 lightweight="false"
+                 adaptable="true"
+                 class="io.github.jollygood1.fileicons.FileIconDecorator">
+         <description>%decorator.description</description>
+         <enablement>
+            <objectClass name="org.eclipse.core.resources.IResource"/>
+         </enablement>
+      </decorator>
+   </extension>
+
+   <extension point="io.github.jollygood1.fileicons.iconSets">
+      <iconSet id="io.github.jollygood1.fileicons.web" name="%iconSet.web" folder="icons/web"/>
+   </extension>
+</plugin>

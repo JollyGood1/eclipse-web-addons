@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="themes" name="%extpoint.themes" schema="schema/themes.exsd"/>
+   <extension-point id="mappings" name="%extpoint.mappings" schema="schema/mappings.exsd"/>
+
+   <!-- General > Appearance > Syntax Colour Theme -->
+   <extension point="org.eclipse.ui.preferencePages">
+      <page id="io.github.jollygood1.syntaxthemes.page"
+            name="%page.name"
+            category="org.eclipse.ui.preferencePages.Views"
+            class="io.github.jollygood1.syntaxthemes.ColorThemePreferencePage">
+         <keywordReference id="io.github.jollygood1.syntaxthemes.keywords"/>
+      </page>
+   </extension>
+   <extension point="org.eclipse.ui.keywords">
+      <keyword id="io.github.jollygood1.syntaxthemes.keywords" label="%page.keywords"/>
+   </extension>
+
+   <!-- Command line: eclipsec -application io.github.jollygood1.syntaxthemes.apply -theme "Tomorrow Night" -->
+   <extension id="apply" point="org.eclipse.core.runtime.applications">
+      <application cardinality="singleton-global" thread="main" visible="true">
+         <run class="io.github.jollygood1.syntaxthemes.ApplyApplication"/>
+      </application>
+   </extension>
+
+   <!-- Bundled themes. A later "file icons" or "window colours" option gets its own extension point next to these. -->
+   <extension point="io.github.jollygood1.syntaxthemes.themes">
+      <theme file="themes/tomorrow-night.xml"
+             textmateThemeId="io.github.jollygood1.syntaxthemes.tm.tomorrow-night"/>
+      <!-- from the Eclipse Color Theme plug-in (EPL-1.0), see NOTICE.md; their TextMate colours are generated -->
+      <theme file="themes/black-pastel.xml"/>
+      <theme file="themes/frontenddev.xml"/>
+      <theme file="themes/gedit-original-oblivion.xml"/>
+      <theme file="themes/havenjark.xml"/>
+      <theme file="themes/inkpot.xml"/>
+      <theme file="themes/minimal.xml"/>
+      <theme file="themes/monokai.xml"/>
+      <theme file="themes/mr.xml"/>
+      <theme file="themes/nightlion-aptana-theme.xml"/>
+      <theme file="themes/notepad-plus-plus-like.xml"/>
+      <theme file="themes/oblivion.xml"/>
+      <theme file="themes/obsidian.xml"/>
+      <theme file="themes/pastel.xml"/>
+      <theme file="themes/recogneyes.xml"/>
+      <theme file="themes/retta.xml"/>
+      <theme file="themes/roboticket.xml"/>
+      <theme file="themes/schuss.xml"/>
+      <theme file="themes/solarized-dark.xml"/>
+      <theme file="themes/solarized-light.xml"/>
+      <theme file="themes/sublime-text-2.xml"/>
+      <theme file="themes/sublime-text-monokai-extended.xml"/>
+      <theme file="themes/sunburst.xml"/>
+      <theme file="themes/tango.xml"/>
+      <theme file="themes/vibrantink.xml"/>
+      <theme file="themes/wombat.xml"/>
+      <theme file="themes/zenburn.xml"/>
+   </extension>
+   <extension point="org.eclipse.tm4e.ui.themes">
+      <theme id="io.github.jollygood1.syntaxthemes.tm.tomorrow-night"
+             name="Tomorrow Night (Syntax Colour Themes)"
+             path="themes/tomorrow-night.tmtheme.json"
+             dark="true"/>
+   </extension>
+
+   <extension point="io.github.jollygood1.syntaxthemes.mappings">
+      <mapping file="mappings/org.eclipse.ui.editors.xml"/>
+      <mapping file="mappings/org.eclipse.jdt.ui.xml"/>
+      <mapping file="mappings/org.eclipse.wst.jsdt.ui.xml"/>
+      <mapping file="mappings/org.eclipse.php.ui.xml"/>
+      <mapping file="mappings/com.dubture.twig.ui.xml"/>
+      <mapping file="mappings/org.eclipse.jst.jsp.ui.xml"/>
+      <mapping file="mappings/org.eclipse.wst.css.ui.xml"/>
+      <mapping file="mappings/org.eclipse.wst.dtd.ui.xml"/>
+      <mapping file="mappings/org.eclipse.wst.html.ui.xml"/>
+      <mapping file="mappings/org.eclipse.wst.xml.ui.xml"/>
+      <mapping file="mappings/org.eclipse.wst.xsl.ui.xml"/>
+      <mapping file="mappings/org.eclipse.wst.json.ui.xml"/>
+   </extension>
+</plugin>

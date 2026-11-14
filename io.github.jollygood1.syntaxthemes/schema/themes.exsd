@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema targetNamespace="io.github.jollygood1.syntaxthemes" xmlns="http://www.w3.org/2001/XMLSchema">
+   <annotation>
+      <appinfo>
+         <meta.schema plugin="io.github.jollygood1.syntaxthemes" id="themes" name="Editor colour themes"/>
+      </appinfo>
+      <documentation>
+         Contributes editor colour themes. A theme is a palette file in the Eclipse Color Theme XML format
+         (root element colorTheme with name/author, one child element per colour key with a color attribute).
+      </documentation>
+   </annotation>
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="theme" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required"/>
+         <attribute name="id" type="string"/>
+         <attribute name="name" type="string"/>
+      </complexType>
+   </element>
+   <element name="theme">
+      <complexType>
+         <attribute name="file" type="string" use="required">
+            <annotation>
+               <documentation>Palette XML, path relative to the contributing bundle.</documentation>
+               <appinfo><meta.attribute kind="resource"/></appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="textmateThemeId" type="string">
+            <annotation>
+               <documentation>Id of a theme contributed to org.eclipse.tm4e.ui.themes; selected for the Generic Code Editor when this theme is applied.</documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+</schema>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema targetNamespace="io.github.jollygood1.syntaxthemes" xmlns="http://www.w3.org/2001/XMLSchema">
+   <annotation>
+      <appinfo>
+         <meta.schema plugin="io.github.jollygood1.syntaxthemes" id="mappings" name="Editor colour mappings"/>
+      </appinfo>
+      <documentation>
+         Contributes a mapping file for one editor plug-in. The file's root element is
+         editorMapping plugin="(preference node)" template="(value format)". Children:
+         map key="(preference key)" theme="(palette key)" [template="..."] and set key="..." value="...".
+         In a template {hex} becomes #RRGGBB and {rgb} becomes r,g,b.
+      </documentation>
+   </annotation>
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="mapping" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required"/>
+         <attribute name="id" type="string"/>
+         <attribute name="name" type="string"/>
+      </complexType>
+   </element>
+   <element name="mapping">
+      <complexType>
+         <attribute name="file" type="string" use="required">
+            <annotation>
+               <documentation>Mapping XML, path relative to the contributing bundle.</documentation>
+               <appinfo><meta.attribute kind="resource"/></appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+</schema>

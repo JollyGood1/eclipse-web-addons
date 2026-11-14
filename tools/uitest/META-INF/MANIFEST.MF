@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: syntaxthemes ui test helper
+Bundle-SymbolicName: syntaxthemes.uitest;singleton:=true
+Bundle-Version: 1.0.1
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.core.resources,org.eclipse.ui.ide,org.eclipse.e4.ui.css.swt.theme,org.eclipse.jdt.core,org.eclipse.jdt.launching,io.github.jollygood1.syntaxthemes
