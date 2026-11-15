@@ -48,7 +48,7 @@ The result is an update site (p2 repository) in `io.github.jollygood1.webaddons.
 - The Eclipse release to compile against is the property `eclipse.release` in `pom.xml`; the Tycho version is set there and in `.mvn\extensions.xml` (keep the two the same).
 - Only the root has a `pom.xml`. Tycho reads the plug-ins from their `MANIFEST.MF`, the features from `feature.xml` and the site from `category.xml`.
 - Later builds can run offline: `mvn -o clean verify`.
-- `.github\workflows\update-site.yml` runs the same build on GitHub on every push to `main` and publishes the site on GitHub Pages, together with `io.github.jollygood1.webaddons.site\index.html` (the page a browser shows at that address). One-time setup in the repository: Settings > Pages > Source: *GitHub Actions*.
+- `.github\workflows\update-site.yml` runs the same build on GitHub when a version tag is pushed (`git tag v1.0.1`, then `git push origin v1.0.1`) or when started by hand from the Actions tab, and publishes the site on GitHub Pages, together with `io.github.jollygood1.webaddons.site\index.html` (the page a browser shows at that address). One-time setup in the repository: Settings > Pages > Source: *GitHub Actions*, and Settings > Environments > github-pages > Deployment branches and tags: add a tag rule `v*`.
 
 ### With the script (plug-in jars only, no Maven)
 

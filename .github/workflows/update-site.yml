@@ -1,10 +1,14 @@
 # Builds the plug-ins with Tycho and publishes the update site (p2 repository) on GitHub Pages.
 # One-time setup in the repository: Settings > Pages > Build and deployment > Source: "GitHub Actions".
+#
+# Publishes only when a version tag is pushed (git tag v1.0.1, git push origin v1.0.1), or when started by hand
+# from the Actions tab. For tags, also allow them once in Settings > Environments > github-pages >
+# Deployment branches and tags: add a tag rule "v*".
 name: Update site
 
 on:
   push:
-    branches: [main]
+    tags: ['v*']
   workflow_dispatch:
 
 permissions:
