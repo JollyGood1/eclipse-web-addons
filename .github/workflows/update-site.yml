@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write # to create the Release for a tag
   pages: write
   id-token: write
 
@@ -39,6 +39,16 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: io.github.jollygood1.webaddons.site/target/repository
+      # for a version tag: also a Release with the update site as a zip (Install New Software > Add... > Archive...)
+      - name: Create the Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          zip="eclipse-web-addons-update-site-${GITHUB_REF_NAME}.zip"
+          cp io.github.jollygood1.webaddons.site/target/*.zip "$zip"
+          gh release create "$GITHUB_REF_NAME" "$zip" --title "$GITHUB_REF_NAME" --generate-notes \
+            --notes "Install in Eclipse: Help > Install New Software, location https://jollygood1.github.io/eclipse-web-addons/ . The attached zip is the same update site for offline use (Add... > Archive...)."
 
   deploy:
     needs: build
