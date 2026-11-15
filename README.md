@@ -125,6 +125,30 @@ Note on Tomorrow Night: the bundled palette uses background `#1C1F22` (Dark Gray
 
 The script builds a separate Eclipse configuration and a fresh workspace in a work folder (`-WorkDir`, default: a folder under the temp directory), so the Eclipse install is only read and no Eclipse has to be closed. The test prints the state after each step (lines starting with `UITEST`, `ICONTEST` or `IMPORTTEST`) and saves pictures into the work folder.
 
+### On Linux, in Docker
+
+`tools\docker` holds an Ubuntu image with Eclipse IDE for PHP Developers (plus the Java tooling, which the theme tests need), a virtual screen and a script. The container installs both plug-ins from the public update site, applies Tomorrow Night from the command line, and runs the `themes`, `java` and `icons` tests. The `import` test is Windows only.
+
+```powershell
+docker build -t eclipse-web-addons-test tools/docker
+```
+
+```powershell
+docker run --rm -v "<repository folder>:/src:ro" -v "<folder for results>:/out" eclipse-web-addons-test
+```
+
+Options: `-v "<folder with reference .prefs files>:/kit:ro"` to compare what Apply writes, `-e SITE=<address>` for another update site, `-e TESTS="themes java icons"` to choose the tests. The results are printed and the pictures land in the results folder.
+
+To use that Eclipse by hand, start a container that shows its screen in a web browser, then open `http://localhost:6080/vnc.html?autoconnect=1&resize=scale`:
+
+```powershell
+docker run -d --name eclipse-web-addons -p 127.0.0.1:6080:6080 eclipse-web-addons-test run-gui.sh
+```
+
+The screen has no password, so keep the `127.0.0.1:` in front of the port; then only this computer can reach it. Closing Eclipse stops the container; `docker start eclipse-web-addons` brings it back.
+
+Run on 2026-11-15 with Ubuntu 24.04 and Eclipse 2026-09 against version 1.0.0.202611142211 from the update site: the install, all three tests and the command-line apply passed.
+
 ## Later option (not built)
 
 Window colours as a choice. They have to stay a stylesheet layered on Eclipse's built-in Dark theme, not a separate theme id.

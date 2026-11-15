@@ -74,7 +74,7 @@ public class Open implements IStartup {
 		gc.dispose();
 		ImageLoader l = new ImageLoader();
 		l.data = new ImageData[] { img.getImageData() };
-		l.save(OUT + "\\" + name + ".png", SWT.IMAGE_PNG);
+		l.save(OUT + "/" + name + ".png", SWT.IMAGE_PNG);
 		img.dispose();
 	}
 
